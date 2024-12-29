@@ -47,7 +47,7 @@
                 border-radius: 20px;
                 padding: 0;
                 margin: 0;
-                box-sizing: border-box;
+                box-sizing: border-box; tu
                 margin-right: 0;
                 margin-top: -20px;
             }
@@ -111,7 +111,53 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<div id='contato' class='bg-light container-fluid mt-3 mb-5 p-3 border'style="border-radius: 10px;height:auto; width:96%">
+<h3 class='text-center'>Verifique a disponilidade <br> e Faça sua reserva!</h3>
+
+<div class="row">
+        <!-- Inputs de Check-in e Check-out lado a lado em telas maiores -->
+        <div class="col-md-6">
+            <label for="checkin" class="form-label">Check-in</label>
+            <input type="text" class="form-control rounded" id="checkin" placeholder="Selecione a data de check-in" required>
+        </div>
+        
+        <div class="col-md-6 ">
+            <label for="checkout" class="form-label">Check-out</label>
+            <input type="text" class="form-control rounded" id="checkout" placeholder="Selecione a data de check-out" required>
+        </div>
+    </div>
+
+    <!-- Input para Nome -->
+    <div class="row">
+        <div class="col-md-6 ">
+            <label for="guestName" class="form-label">Nome</label>
+            <input type="text" class="form-control rounded" id="guestName" placeholder="Digite seu nome" required>
+        </div>
+                    
+     <!-- Input para Quantidade de Hóspedes -->
+     <div class="col-md-6 mb-3">
+        <label for="guestCount" class="form-label">Quantidade de Hóspedes</label>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <input type="number" class="form-control rounded mb-3 mb-md-0" id="guestCount" placeholder="Adultos" required>
+            </div>
+            <div class="col-12 col-md-6">
+                <input type="number" class="form-control rounded" id="guestCountChildrens" placeholder="Crianças menores de 5 anos">
+            </div>
+        </div>
+     </div>
+
+
+   </div>    
+    <!-- Botão para Enviar Reserva -->
+    <div class="text-center">
+        <button type="button" class="btn btn-primary px-4 py-2" id="confirmReservation">Enviar para WhatsApp</button>
+    </div>
+
+<!-- Scripts para Flatpickr e WhatsApp -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/pt.js"></s
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
@@ -128,7 +174,72 @@
             imageModal.show();
         });
     });
+</script>                                                                               cript>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let lastScrollY = window.scrollY;
+        const navbar = document.getElementById('mainNavbar');
+
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > lastScrollY) {
+                // Rolando para baixo
+                navbar.classList.add('navbar-hidden');
+            } else {
+                // Rolando para cima
+                navbar.classList.remove('navbar-hidden');
+            }
+            lastScrollY = window.scrollY;
+        });
+    });
 </script>
+
+<script>
+  // URLs para aplicativos móveis e versão web
+  const instagramMobile = "instagram://user?username=aluga_ubatuba_casa";
+  const instagramWeb = "https://www.instagram.com/aluga_ubatuba_casa/";
+  const facebookMobile = "fb://www.facebook.com/share/19TyfTTf29/";
+  const facebookWeb = "https://www.facebook.com/share/1DBFtSuk9a/";
+
+  // Função para detectar dispositivo móvel
+  function isMobile() {
+    return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  }
+
+  // Atualizar links com base no dispositivo
+  document.getElementById("instagram-link").href = isMobile() ? instagramMobile : instagramWeb;
+  document.getElementById("facebook-link").href = isMobile() ? facebookMobile : facebookWeb;
+</script>
+<script>
+    const video = document.getElementById('backgroundVideo');
+    const muteButton = document.getElementById('muteButton');
+    const volumeSlider = document.getElementById('volumeSlider');
+
+    muteButton.addEventListener('click', () => {
+        if (video.muted) {
+            video.muted = false;
+            muteButton.textContent = '🔈';
+        } else {
+            video.muted = true;
+            muteButton.textContent = '🔇';
+        }
+    });
+
+    volumeSlider.addEventListener('input', (event) => {
+        video.volume = event.target.value;
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/pt.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
+
+
+
+
