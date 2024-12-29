@@ -156,8 +156,7 @@
 
 <!-- Scripts para Flatpickr e WhatsApp -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/pt.js"></s
- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/pt.js"></s <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
@@ -172,9 +171,7 @@
             modalImage.src = this.dataset.large;
             const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
             imageModal.show();
-        });
-    });
-</script>                                                                               cript>
+            </script>
 
 
 <script>
@@ -233,6 +230,45 @@
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/pt.js"></script>
+<script>
+    // Inicializar o calendário Flatpickr para os inputs de Check-in e Check-out
+    flatpickr("#checkin", {
+        locale: "pt", 
+        dateFormat: "d/m/Y", 
+        minDate: "today", 
+    });
+    
+    flatpickr("#checkout", {
+        locale: "pt", 
+        dateFormat: "d/m/Y", 
+        minDate: "today", 
+    });
+
+    // Função para enviar as informações para o WhatsApp
+    document.getElementById('confirmReservation').addEventListener('click', function() {
+        var checkin = document.getElementById('checkin').value;
+        var checkout = document.getElementById('checkout').value;
+        var guestName = document.getElementById('guestName').value;
+        var guestCount = document.getElementById('guestCount').value;
+        var guestCountChildrens = document.getElementById('guestCountChildrens').value;
+
+        // Verificar se todos os campos estão preenchidos
+        if (checkin && checkout && guestName && guestCount) {
+            var message = `Olá, gostaria de saber se a casa está disponível de ${checkin} a ${checkout}.\nNome: ${guestName}\nAdultos: ${guestCount}\nCrianças até 5 anos: ${guestCountChildrens}`;
+            var whatsappUrl = `https://wa.me/12987063678?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        } else {
+            alert('Por favor, preencha todos os campos antes de enviar.');
+        }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/pt.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
