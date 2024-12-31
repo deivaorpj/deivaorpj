@@ -1,8 +1,9 @@
 const images = [
-    'imgCima/image1.jpg',
-    'imgCima/image2.jpg',
-    'imgCima/image3.jpg',
-    'imgCima/image4.jpg'
+    'imgCima/imagem1.jpg',
+    'imgCima/imagem2.jpg',
+    'imgCima/imagem3.jpg',
+    'imgCima/imagem4.jpg',
+    'imgCima/ducha.jpg'
     // Adicione mais imagens aqui
 ];
 
