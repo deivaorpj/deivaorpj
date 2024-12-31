@@ -8,7 +8,7 @@ const images = [
     'imgCima/quarto3Cima.jpg',
     'imgCima/salaCima.jpg',
     'imgCima/varandaCima.jpg',
-    imgCima/varandaCima2.jpg'
+    'imgCima/varandaCima2.jpg'
     // Adicione mais imagens aqui
 ];
 
