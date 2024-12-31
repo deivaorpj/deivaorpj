@@ -62,6 +62,7 @@
                 // Adiciona a imagem à galeria
                 const col = document.createElement('div');
                 col.className = 'col-lg-3 col-md-4 col-6 mb-2';
+                col.innerHTML = `<h1>"${index}"</h1>
                 col.innerHTML = `<img src="${imagePath}" class="img-fluid image-thumbnail" 
                                     data-index="${index}" alt="Imagem">`;
                 gallery.appendChild(col);
@@ -69,7 +70,7 @@
 
             addImageClickListeners();
         } catch (error) {
-            console.error('Erro ao buscar as imagens:', error);
+            alert('Erro ao buscar as imagens:', error);
         }
     }
 
