@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galeria de Fotos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="./style.css" rel="stylesheet" text='text/css'>
+    <link href="./style.css" rel="stylesheet">
 </head>
 <body>
 
 <div class="container-fluid mt-5">
-    <h1 class='text-center'>Fotos da casa sem piscina</h1>
-    <div class="row" id="imageGallery"></div>
+    <h1 class="text-center">Fotos da casa com piscina</h1>
+    <div id="imageGallery" class="row"></div>
     <div class="text-center mt-3 mb-3">
         <a href="todas_fotos_cima.html" class="btn btn-primary">Fotos da casa sem piscina</a>
         <a href="index.html" class="btn btn-secondary">Voltar</a>
@@ -25,8 +25,8 @@
             <div class="modal-header">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body text-center"> <!-- Centraliza o conteúdo -->
-                <img src="" id="modalImage" class="img-fluid mb-3" alt="Imagem Grande"> <!-- Espaçamento inferior -->
+            <div class="modal-body text-center">
+                <img src="" id="modalImage" class="img-fluid mb-3" alt="Imagem Grande">
                 <div class="d-flex justify-content-center align-items-center gap-3">
                     <button id="prevBtn" class="btn btn-primary">&lt;</button>
                     <div class="image-counter" id="imageCounter"></div>
@@ -38,77 +38,6 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    const imageFolder = './imgCima'; // Caminho da pasta das imagens
-    const gallery = document.getElementById('imageGallery');
-    const modalImage = document.getElementById('modalImage');
-    const imageCounter = document.getElementById('imageCounter');
-    let images = [];
-    let currentIndex = 0;
-
-    // Buscar as imagens dinamicamente
-    async function fetchImages() {
-        try {
-            const response = await fetch(imageFolder);
-            const html = await response.text();
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            const links = doc.querySelectorAll('a[href$=".jpg"], a[href$=".png"], a[href$=".jpeg"]');
-
-            links.forEach((link, index) => {
-                const imagePath = `${imageFolder}/${link.getAttribute('href')}`;
-                images.push(imagePath);
-
-                // Adiciona a imagem à galeria
-                const col = document.createElement('div');
-                col.className = 'col-lg-3 col-md-4 col-6 mb-2';
-                col.innerHTML = `<h1>"${index}"</h1>
-                col.innerHTML = `<img src="${imagePath}" class="img-fluid image-thumbnail" 
-                                    data-index="${index}" alt="Imagem">`;
-                gallery.appendChild(col);
-            });
-
-            addImageClickListeners();
-        } catch (error) {
-            alert('Erro ao buscar as imagens:', error);
-        }
-    }
-
-    // Adicionar evento de clique nas imagens
-    function addImageClickListeners() {
-        document.querySelectorAll('.image-thumbnail').forEach((image, index) => {
-            image.addEventListener('click', function () {
-                currentIndex = index;
-                updateModalImage();
-                const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
-                imageModal.show();
-            });
-        });
-    }
-
-    // Atualizar a imagem no modal
-    function updateModalImage() {
-        modalImage.src = images[currentIndex];
-        imageCounter.textContent = `Imagem ${currentIndex + 1} de ${images.length}`;
-    }
-
-    // Navegação do carrossel
-    document.getElementById('prevBtn').addEventListener('click', function () {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateModalImage();
-        }
-    });
-
-    document.getElementById('nextBtn').addEventListener('click', function () {
-        if (currentIndex < images.length - 1) {
-            currentIndex++;
-            updateModalImage();
-        }
-    });
-
-    // Inicializa a galeria
-    fetchImages();
-</script>
+<script src="./script.js"></script>
 </body>
 </html>
