@@ -4,12 +4,6 @@ const images = [
     'imgCima/frenteBaixo.jpg',
     'imgCima/piscinaBaixo.jpg',
     'imgCima/piscinaBaixo2.jpg',
-    'imconst images = [
-    'imgCima/fachadaBaixo.jpg',
-    'imgCima/fachadaBaixo2.jpg',
-    'imgCima/frenteBaixo.jpg',
-    'imgCima/piscinaBaixo.jpg',
-    'imgCima/piscinaBaixo2.jpg',
     'imgCima/estacionamentoBaixo.jpg',
     'imgCima/ducha.jpg',
     'imgCima/salaBaixo.jpg'
