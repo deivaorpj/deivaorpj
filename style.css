@@ -1,81 +1,305 @@
-<style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .main-image {
-            min-height: 90vh;
-            max-height: 700px;
-            object-fit: cover;
-            width: 100%;
-            padding: 10px;
-            border-radius: 20px;
-        }
-
-        .thumbnail-foto {
-            min-height: 340px;
-            max-height: 341px;
-            min-height: 44vh;
-            width: 100%;
-            object-fit: cover;
-            cursor: pointer;
-            position: relative;
-            padding: 5px;
-            border-radius: 20px;
-        }
-.image-thumbnail {
-    cursor: pointer;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    transition: transform 0.2s ease-in-out;
-    width: 100%; /* Assegura que as miniaturas se ajustem ao container */
-    height: 200px; /* Altura fixa para as miniaturas */
-    object-fit: cover; /* Ajusta a imagem para preencher o espaço sem distorção */
+/* Reset */
+body,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-.image-thumbnail:hover {
-    transform: scale(1.05);
-    border-color: #007bff;
+body {
+    font-family: 'Montserrat', sans-serif !important;
+    background-color: #EAE7DD !important;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1030;
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+}
+
+.navbar-hidden {
+    transform: translateY(-100%);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links li {
+    padding: 8px 12px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #FFD700;
+}
+
+/* Toggle Button */
+.toggle-button {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.main-image {
+    width: 100%;
+    min-height: 90vh;
+    max-height: 700px;
+    object-fit: cover;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.thumbnail {
+    height: 245px;
+    object-fit: cover;
+    width: 100%;
+    position: relative;
+}
+
+.thumbnail-foto {
+    min-height: 340px;
+    max-height: 341px;
+    min-height: 44vh;
+    width: 100%;
+    object-fit: cover;
+    position: relative;
+    padding: 5px;
+    border-radius: 20px;
+
+
+}
+
+.image-thumbnail {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8%;
+    margin-top: 20px;
+
+}
+
+.btn-show-all {
+    position: absolute;
+    width: 80%;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 123, 255, 0.7);
+    color: white;
+    z-index: 10;
+}
+
+/* Estilo das setas */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 30px;
+    /* Define o tamanho da seta */
+    height: 30px;
+    background-size: 100%;
+    /* Faz a seta ocupar todo o espaço */
+    background-color: transparent;
+    /* Remove fundo extra */
+    filter: invert(1);
+    /* Torna as setas brancas (para fundos escuros) */
+}
+
+/* Remove bordas e fundo dos botões */
+.carousel-control-prev,
+.carousel-control-next {
+    border: none;
+    /* Remove a borda */
+    background: none;
+    /* Remove fundo adicional */
+    outline: none;
+    /* Remove bordas ao focar */
+    width: 5%;
+    /* Ajusta a largura do botão */
+}
+
+/* Destaque ao passar o mouse (opcional) */
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    /* Fundo translúcido ao passar o mouse */
+    border-radius: 50%;
+    /* Torna o botão arredondado (opcional) */
+}
+
+.carousel-item {
+    padding: 20px;
 }
 
 #modalImage {
-    width: 100%; /* Largura máxima para ocupar o modal */
-    height: 500px; /* Altura fixa para imagens grandes */
-    object-fit: contain; /* Evita distorção na imagem grande */
+    width: 100%;
+    height: 70vh;
 }
-        @media (max-width: 768px) {
-            .container {
-                display: flex;
-                flex-direction: column;
-                padding: 0;
-                margin: 0;
-                width: 100%;
-            }
 
-            .main-image {
-                width: 105%;
-                height: 100vh;
-                object-fit: cover;
-                border-radius: 20px;
-                padding: 0;
-                margin: 0;
-                box-sizing: border-box; tu
-                margin-right: 0;
-                margin-top: -20px;
-            }
+.card {
+    min-height: 35%;
+    width: 100%;
+}
 
-            .thumbnail-container {
-                margin-top: -40px;
-            }
+/* Centralizar o calendário na página */
+#calendarContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    /* ou ajuste para a altura que você deseja */
+}
 
-            .thumbnail-foto {
-                display: none;
-            }
+.calendar-box {
+    width: 300px;
+    /* Definindo a largura para os calendários */
+    height: auto;
+}
 
-            .col-lg-3 {
-                flex: 0 0 100%;
-                max-width: 100%;
-                min-height: 200px;
-            }
-        }
-    </style>
+#map {
+    height: 100vh;
+    width: 96%;
+}
+
+.flatpickr-input {
+    width: 100%;
+    /* Garante que os inputs se ajustem ao container */
+    padding: 0.375rem 0.75rem;
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .toggle-button {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        background-color: #007BFF;
+        position: absolute;
+        top: 50px;
+        right: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        /* Garante que ocupa toda a largura */
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 10%;
+        /* Botões maiores para telas menores */
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        width: 25px;
+        /* Setas menores em telas pequenas */
+        height: 25px;
+    }
+
+    .page-card {
+        margin-top: -50px;
+    }
+
+    .main-image {
+        width: 50vh;
+        height: 100vh;
+        object-fit: cover;
+        padding: 0;
+        margin: 0;
+        margin-right: 0;
+    }
+
+    .thumbnail-container {
+        margin-top: -40px;
+        /* Espaçamento entre a imagem e as miniaturas */
+    }
+
+    .thumbnail-foto {
+        display: none;
+        /* Esconde miniaturas no celular */
+    }
+
+    .image-thumbnail {
+        max-height: 150px;
+        border-radius: 8%;
+    }
+
+    #map {
+        height: 80vh;
+        width: 100%;
+    }
+
+    .thumbnail {
+        display: none;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ced4da;
+    }
+
+    /* Ajuste para o botão */
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        border-radius: 8px;
+        transition: background-color 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .col-lg-3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        min-height: 200px;
+    }
+
+    .row .col-md-6 {
+        margin-bottom: 15px;
+    }
+}

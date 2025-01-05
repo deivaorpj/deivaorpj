@@ -1,249 +1,98 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galeria de Imagens</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./style.css">
-<style>
 
-            body {
-                font-family: 'Montserrat', sans-serif;
-            }   
-            .navbar {
-                position: fixed;
-                top: 0;
-                width: 100%;
-                z-index: 1030;
-                transition: transform 0.3s ease-in-out;
-            }
-            .navbar-hidden {
-                transform: translateY(-100%);
-            }
-            .main-image {
-                object-fit: cover;
-                width: 100%; 
-            }
-.video-container {
-    position: relative;
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-}
-
-video#backgroundVideo {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
-.video-controls {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    z-index: 10;
-}
-
-.video-controls button,
-.video-controls input[type="range"] {
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-.video-controls input[type="range"] {
-    width: 150px;
-}
-
-            .thumbnail {
-                cursor: pointer;
-                height: 245px; 
-                object-fit: cover; 
-                width: 100%; 
-                position: relative; 
-            }
-
-            .btn-show-all {
-                position: absolute;
-                width: 80%;
-                bottom: 10px; 
-                left: 50%;
-                transform: translateX(-50%);
-                background-color: rgba(0, 123, 255, 0.7); 
-                color: white;
-                z-index: 10; 
-            }
-            .carousel-item {
-                padding: 20px;
-            }
-            .card {
-                min-height: 35%;
-                width: 100%;
-            }
-            #map {
-                height: 100vh;
-                width: 96%;
-            }
-            /* Centralizar o calendário na página */
-            #calendarContainer {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: auto; /* ou ajuste para a altura que você deseja */
-            }
-            .calendar-box {
-                width: 300px; /* Definindo a largura para os calendários */
-                height: auto;
-                }
-
-            @media (max-width: 768px) {
-                .container {
-                flex-direction: column;
-                }     
-            .page-card{
-                margin-top:-50px;  
-            }  
-            .thumbnail {
-                    display: none;
-                }
-                .col-lg-3 {
-                    flex: 0 0 100%;
-                    max-width: 100%;
-                    min-height: 200px;
-                }
-                #calendarContainer2 {
-                display: none;
-            }
-            
-            .calendar-box {
-            width: 300px; /* Definindo a largura para os calendários */
-            height: auto;
-        
-            }       
-
-            /* Centralizando o conteúdo */
-            .container {
-                display: flex;
-                justify-content: center;
-            }
-            /* Bordas arredondadas e margens para um visual mais bonito */
-            .form-control {
-                border-radius: 8px;
-                padding: 10px;
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-                border: 1px solid #ced4da;
-            }
-
-            /* Ajuste para o botão */
-            .btn-primary {
-                background-color: #007bff;
-                border-color: #007bff;
-                border-radius: 8px;
-                transition: background-color 0.3s;
-            }
-
-            .btn-primary:hover {
-                background-color: #0056b3;
-            }
-
-            /* Espaçamento e organização em telas maiores */
-            .row .col-md-6 {
-                padding: 0 15px;
-            }
-            #map {
-                height: 80vh;
-                width: 100%;
-            }
-            .row .col-md-6 {
-                margin-bottom: 15px;
-            }
-        }
-    
-    
-</style>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
+
 <body>
-<!-- Navbar -->
-<nav id="mainNavbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#" style="font-family: 'Arial', sans-serif; font-weight: bold; color: silver; font-size: 20px; text-transform: uppercase;">
-        Ubatuba House
-    </a>
-    <li class="nav-item">
-        <a class="nav-link mr-2" id="instagram-link" href="#" target="_blank">
-           <i class="fab fa-instagram fa-2x text-white"></i>
+    <!-- Navbar -->
+    <nav id="mainNavbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#"
+            style="font-family: 'Arial', sans-serif; font-weight: bold; color: silver; font-size: 20px; text-transform: uppercase;">
+            Ubatuba House
         </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="facebook-link" href="#" target="_blank">
-           <i class="fab fa-facebook fa-2x text-white"></i> 
-        </a>
-    </li>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="todas_fotos.php">Galeria de Fotos</a>
-            </li>
+        <li class="nav-item">
+            <a class="nav-link mr-2" id="instagram-link" href="#" target="_blank">
+                <i class="fab fa-instagram fa-2x text-white"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="facebook-link" href="#" target="_blank">
+                <i class="fab fa-facebook fa-2x text-white"></i>
+            </a>
+        </li>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="todas_fotos.php">Galeria de Fotos</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#map">Localização</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#contato">Reserve aqui</a>
-                </li>       
-        </ul>
-    </div>
-</nav>    
-
-<div class="container-fluid mt-2" style="height:100vh">
-    <h1 class="text-center mt-5"></h1>
-    <div class="row position-relative main-image">
-        <div class="col-lg-6 col-md-12">
-            <img src="./imgCima/imagem1.jpg" class="img-fluid main-image" alt="Imagem Principal" id="mainImage">
+                </li>
+            </ul>
         </div>
-        <div class="col-lg-6 col-md-12">
-            <div class="row">
-                <!-- Exemplo de miniaturas -->
-                <div class="col-6 mb-2">
-                    <img src="./imgCima/imagem1.jpg" class="img-fluid thumbnail-foto" data-large="path/to/image1.jpg" alt="Miniatura">
-                </div>
-                <div class="col-6 mb-2">
-                    <img src="./imgCima/imagem2.jpg" class="img-fluid thumbnail-foto" data-large="path/to/image2.jpg" alt="Miniatura">
-                </div>
-                <div class="col-6 mb-2">
-                    <img src="./imgCima/imagem3.jpg" class="img-fluid thumbnail-foto" data-large="path/to/image3.jpg" alt="Miniatura">
-                </div>
-                <!-- Botão para ver todas as fotos -->
-                <div class="col-6 mb-0">
-                    <div class="thumbnail-container position-relative">
-                        <img src="./imgCima/imagem4.jpg" class="img-fluid thumbnail-foto" data-large="imagem1.jpg" alt="Miniatura">
-                        <a href="todas_fotos.html" class="btn btn-primary btn-show-all">Ver Todas as Fotos</a>
+    </nav>
+
+    <div class="container-fluid mt-2" style="height:100vh">
+        <h1 class="text-center mt-5"></h1>
+        <div class="row position-relative main-image">
+            <div class="col-lg-6 col-md-12">
+                <img src="./imgCima/piscinaBaixo2.jpg" class="img-fluid main-image" alt="Imagem Principal"
+                    id="mainImage">
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="row">
+                    <!-- Exemplo de miniaturas -->
+                    <div class="col-6 mb-2">
+                        <img src="./imgCima/imagem1.jpg" class="img-fluid thumbnail-foto"
+                            data-large="path/to/image1.jpg" alt="Miniatura">
+                    </div>
+                    <div class="col-6 mb-2">
+                        <img src="./imgCima/imagem2.jpg" class="img-fluid thumbnail-foto"
+                            data-large="path/to/image2.jpg" alt="Miniatura">
+                    </div>
+                    <div class="col-6 mb-2">
+                        <img src="./imgCima/imagem3.jpg" class="img-fluid thumbnail-foto"
+                            data-large="path/to/image3.jpg" alt="Miniatura">
+                    </div>
+                    <!-- Botão para ver todas as fotos -->
+                    <div class="col-6 mb-0">
+                        <div class="thumbnail-container position-relative">
+                            <img src="./imgCima/imagem4.jpg" class="img-fluid thumbnail-foto" data-large="imagem1.jpg"
+                                alt="Miniatura">
+                            <a href="todas_fotos.html" class="btn btn-primary btn-show-all">Ver Todas as Fotos</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Modal para imagem grande -->
-<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <img id="modalImage" class="img-fluid" alt="Imagem Grande">
+    <!-- Modal para imagem grande -->
+    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img id="modalImage" class="img-fluid" alt="Imagem Grande">
+                </div>
             </div>
         </div>
     </div>
-</div>
     <h1 class="page-card text-center mb-4">Detalhes da Casa</h1>
 
     <div class="container-fluid bg-light">
@@ -254,13 +103,15 @@ video#backgroundVideo {
                     <!-- Conteúdo gerado dinamicamente -->
                 </div>
                 <!-- Controles do Carrossel -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#cardCarouselLarge" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#cardCarouselLarge"
+                    data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
+                    <span class="visually-hidden"></span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#cardCarouselLarge" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#cardCarouselLarge"
+                    data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
+                    <span class="visually-hidden"></span>
                 </button>
             </div>
         </div>
@@ -272,206 +123,190 @@ video#backgroundVideo {
                     <!-- Conteúdo gerado dinamicamente -->
                 </div>
                 <!-- Controles do Carrossel -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#cardCarouselSmall" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#cardCarouselSmall"
+                    data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
+                    <span class="visually-hidden"></span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#cardCarouselSmall" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#cardCarouselSmall"
+                    data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
+                    <span class="visually-hidden"></span>
                 </button>
             </div>
         </div>
     </div>
 
+    <!-- Formulário de Reserva -->
 
+    <div id='contato' class='bg-light container-fluid mt-3 mb-5 p-3 border'
+        style="border-radius: 10px;height:auto; width:96%">
+        <h3 class='text-center'>Verifique a disponilidade <br> e Faça sua reserva!</h3>
+
+        <div class="row">
+            <!-- Inputs de Check-in e Check-out lado a lado em telas maiores -->
+            <div class="col-md-6">
+                <label for="checkin" class="form-label">Check-in</label>
+                <input type="text" class="form-control rounded" id="checkin" placeholder="DD/MM/AAAA" maxlength="10"
+                    required>
+            </div>
+
+            <div class="col-md-6">
+                <label for="checkout" class="form-label">Check-out</label>
+                <input type="text" class="form-control rounded" id="checkout" placeholder="DD/MM/AAAA" maxlength="10"
+                    required>
+            </div>
+        </div>
+
+        <!-- Input para Nome -->
+        <div class="row">
+            <div class="col-md-6 ">
+                <label for="guestName" class="form-label">Nome</label>
+                <input type="text" class="form-control rounded" id="guestName" placeholder="Digite seu nome" required>
+            </div>
+
+            <!-- Input para Quantidade de Hóspedes -->
+            <div class="col-md-6 mb-3">
+                <label for="guestCount" class="form-label">Quantidade de Hóspedes</label>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <input type="number" class="form-control rounded mb-3 mb-md-0" id="guestCount"
+                            placeholder="Adultos" required>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input type="number" class="form-control rounded" id="guestCountChildrens"
+                            placeholder="Crianças menores de 5 anos">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- Botão para Enviar Reserva -->
+        <div class="text-center">
+            <button type="button" class="btn btn-primary px-4 py-2" id="confirmReservation">Enviar para
+                WhatsApp</button>
+        </div>
+    </div>
+    <footer class="text-center mt-5 justify-content-center bg-dark light">
+        <h5 class="text-center mt-5 light p-3" style='color: #fff;'>© Ubatuba House 2025 ©</h5>
+    </footer>
+
+
+
+    <!-- Scripts para Flatpickr e WhatsApp -->
+    <script>
+        // Função para aplicar máscara no input de data
+        function applyDateMask(input) {
+            input.addEventListener('input', function (e) {
+                let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+                let formattedValue = '';
+
+                if (value.length > 0) {
+                    formattedValue += value.slice(0, 2); // Dia
+                }
+                if (value.length > 2) {
+                    formattedValue += '/' + value.slice(2, 4); // Mês
+                }
+                if (value.length > 4) {
+                    formattedValue += '/' + value.slice(4, 8); // Ano
+                }
+
+                input.value = formattedValue; // Atualiza o valor formatado
+            });
+        }
+
+        // Aplica a máscara nos inputs
+        const checkinInput = document.getElementById('checkin');
+        const checkoutInput = document.getElementById('checkout');
+
+        applyDateMask(checkinInput);
+        applyDateMask(checkoutInput);
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let lastScrollY = window.scrollY;
+            const navbar = document.getElementById('mainNavbar');
+
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > lastScrollY) {
+                    // Rolando para baixo
+                    navbar.classList.add('navbar-hidden');
+                } else {
+                    // Rolando para cima
+                    navbar.classList.remove('navbar-hidden');
+                }
+                lastScrollY = window.scrollY;
+            });
+        });
+    </script>
+
+    <script>
+        // URLs para aplicativos móveis e versão web
+        const instagramMobile = "instagram://user?username=aluga_ubatuba_casa";
+        const instagramWeb = "https://www.instagram.com/aluga_ubatuba_casa/";
+        const facebookMobile = "fb://www.facebook.com/share/19TyfTTf29/";
+        const facebookWeb = "https://www.facebook.com/share/1DBFtSuk9a/";
+
+        // Função para detectar dispositivo móvel
+        function isMobile() {
+            return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        }
+
+        // Atualizar links com base no dispositivo
+        document.getElementById("instagram-link").href = isMobile() ? instagramMobile : instagramWeb;
+        document.getElementById("facebook-link").href = isMobile() ? facebookMobile : facebookWeb;
+    </script>
+
+    <script>
+
+        // Função para enviar as informações para o WhatsApp
+        document.getElementById('confirmReservation').addEventListener('click', function () {
+            var checkin = document.getElementById('checkin').value;
+            var checkout = document.getElementById('checkout').value;
+            var guestName = document.getElementById('guestName').value;
+            var guestCount = document.getElementById('guestCount').value;
+            var guestCountChildrens = document.getElementById('guestCountChildrens').value;
+
+            // Verificar se todos os campos estão preenchidos
+            if (checkin && checkout && guestName && guestCount) {
+                var message = `Olá, gostaria de saber se a casa está disponível de ${checkin} a ${checkout}.\nNome: ${guestName}\nAdultos: ${guestCount}\nCrianças até 5 anos: ${guestCountChildrens}`;
+                var whatsappUrl = `https://wa.me/12987063678?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            } else {
+                alert('Por favor, preencha todos os campos antes de enviar.');
+            }
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./card.js"></script>
 
+    <script>
+        // Coordenadas da localização
+        var latitude = -23.45694904534036;
+        var longitude = -45.083017187447076;
 
-<div id='contato' class='bg-light container-fluid mt-3 mb-5 p-3 border'style="border-radius: 10px;height:auto; width:96%">
-<h3 class='text-center'>Verifique a disponilidade <br> e Faça sua reserva!</h3>
+        // Inicializar o mapa com o arraste desativado
+        var map = L.map('map', { dragging: false, scrollWheelZoom: false }).setView([latitude, longitude], 15);
 
-<div class="row">
-        <!-- Inputs de Check-in e Check-out lado a lado em telas maiores -->
-        <div class="col-md-6">
-            <label for="checkin" class="form-label">Check-in</label>
-            <input type="text" class="form-control rounded" id="checkin" placeholder="Selecione a data de check-in" required>
-        </div>
-        
-        <div class="col-md-6 ">
-            <label for="checkout" class="form-label">Check-out</label>
-            <input type="text" class="form-control rounded" id="checkout" placeholder="Selecione a data de check-out" required>
-        </div>
-    </div>
+        // Adicionar camada do OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-    <!-- Input para Nome -->
-    <div class="row">
-        <div class="col-md-6 ">
-            <label for="guestName" class="form-label">Nome</label>
-            <input type="text" class="form-control rounded" id="guestName" placeholder="Digite seu nome" required>
-        </div>
-                    
-     <!-- Input para Quantidade de Hóspedes -->
-     <div class="col-md-6 mb-3">
-        <label for="guestCount" class="form-label">Quantidade de Hóspedes</label>
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <input type="number" class="form-control rounded mb-3 mb-md-0" id="guestCount" placeholder="Adultos" required>
-            </div>
-            <div class="col-12 col-md-6">
-                <input type="number" class="form-control rounded" id="guestCountChildrens" placeholder="Crianças menores de 5 anos">
-            </div>
-        </div>
-     </div>
+        // Adicionar marcador ao mapa
+        var marker = L.marker([latitude, longitude]).addTo(map);
 
-
-   </div>    
-    <!-- Botão para Enviar Reserva -->
-    <div class="text-center">
-        <button type="button" class="btn btn-primary px-4 py-2" id="confirmReservation">Enviar para WhatsApp</button>
-    </div>
-
-<!-- Scripts para Flatpickr e WhatsApp -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/pt.js"></s <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<script>
-    // Script para alterar a imagem principal ao clicar nas miniaturas
-    document.querySelectorAll('.thumbnail-foto').forEach(thumbnail => {
-        thumbnail.addEventListener('click', function() {
-            const mainImage = document.getElementById('mainImage');
-            mainImage.src = this.dataset.large; // Muda a imagem principal
-            // Abre o modal com a imagem grande
-            const modalImage = document.getElementById('modalImage');
-            modalImage.src = this.dataset.large;
-            const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
-            imageModal.show();
-            </script>
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        let lastScrollY = window.scrollY;
-        const navbar = document.getElementById('mainNavbar');
-
-        window.addEventListener('scroll', function () {
-            if (window.scrollY > lastScrollY) {
-                // Rolando para baixo
-                navbar.classList.add('navbar-hidden');
-            } else {
-                // Rolando para cima
-                navbar.classList.remove('navbar-hidden');
-            }
-            lastScrollY = window.scrollY;
-        });
-    });
-</script>
-
-<script>
-  // URLs para aplicativos móveis e versão web
-  const instagramMobile = "instagram://user?username=aluga_ubatuba_casa";
-  const instagramWeb = "https://www.instagram.com/aluga_ubatuba_casa/";
-  const facebookMobile = "fb://www.facebook.com/share/19TyfTTf29/";
-  const facebookWeb = "https://www.facebook.com/share/1DBFtSuk9a/";
-
-  // Função para detectar dispositivo móvel
-  function isMobile() {
-    return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  }
-
-  // Atualizar links com base no dispositivo
-  document.getElementById("instagram-link").href = isMobile() ? instagramMobile : instagramWeb;
-  document.getElementById("facebook-link").href = isMobile() ? facebookMobile : facebookWeb;
-</script>
-<script>
-    const video = document.getElementById('backgroundVideo');
-    const muteButton = document.getElementById('muteButton');
-    const volumeSlider = document.getElementById('volumeSlider');
-
-    muteButton.addEventListener('click', () => {
-        if (video.muted) {
-            video.muted = false;
-            muteButton.textContent = '🔈';
-        } else {
-            video.muted = true;
-            muteButton.textContent = '🔇';
-        }
-    });
-
-    volumeSlider.addEventListener('input', (event) => {
-        video.volume = event.target.value;
-    });
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/pt.js"></script>
-<script>
-    // Inicializar o calendário Flatpickr para os inputs de Check-in e Check-out
-    flatpickr("#checkin", {
-        locale: "pt", 
-        dateFormat: "d/m/Y", 
-        minDate: "today", 
-    });
-    
-    flatpickr("#checkout", {
-        locale: "pt", 
-        dateFormat: "d/m/Y", 
-        minDate: "today", 
-    });
-
-    // Função para enviar as informações para o WhatsApp
-    document.getElementById('confirmReservation').addEventListener('click', function() {
-        var checkin = document.getElementById('checkin').value;
-        var checkout = document.getElementById('checkout').value;
-        var guestName = document.getElementById('guestName').value;
-        var guestCount = document.getElementById('guestCount').value;
-        var guestCountChildrens = document.getElementById('guestCountChildrens').value;
-
-        // Verificar se todos os campos estão preenchidos
-        if (checkin && checkout && guestName && guestCount) {
-            var message = `Olá, gostaria de saber se a casa está disponível de ${checkin} a ${checkout}.\nNome: ${guestName}\nAdultos: ${guestCount}\nCrianças até 5 anos: ${guestCountChildrens}`;
-            var whatsappUrl = `https://wa.me/12987063678?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
-        } else {
-            alert('Por favor, preencha todos os campos antes de enviar.');
-        }
-    });
-</script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/pt.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="./map.js"></script>
-<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-
-<script>
-    // Coordenadas da localização
-    var latitude = -23.45694904534036;
-    var longitude = -45.083017187447076;
-
-    // Inicializar o mapa com o arraste desativado
-    var map = L.map('map', { dragging: false, scrollWheelZoom: false  }).setView([latitude, longitude], 15);
-
-    // Adicionar camada do OpenStreetMap
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    // Adicionar marcador ao mapa
-    var marker = L.marker([latitude, longitude]).addTo(map);
-
-    // Adicionar popup ao marcador
-    marker.bindPopup(`
-        <div style="text-align: center;">
+        // Adicionar popup ao marcador
+        marker.bindPopup(`
+            <div style="text-align: center;">
             <b>Ubatuba House</b><br/>
             Casa da Vera!<br/>
             Rua Santos, 434, Estufa II<br/>Ubatuba-SP<br/>
@@ -479,47 +314,43 @@ video#backgroundVideo {
                     class="btn btn-primary btn-sm mt-2">
                 Navegar
             </button>
-        </div>
-    `).openPopup();
+            </div>
+             `).openPopup();
 
-    // Função para abrir o aplicativo de mapas
-    function openMapsApp(lat, lon) {
-        var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        var url = isIOS ? `maps://?q=${lat},${lon}` : `https://www.google.com/maps?q=${lat},${lon}`;
-        window.location.href = url;
-    }
-
-    // Criar botão de controle personalizado
-    var dragControl = L.control({ position: 'bottomleft' }); // Posição no canto superior direito
-
-    dragControl.onAdd = function () {
-        var div = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
-        div.innerHTML = '<button id="toggle-drag" class="btn btn-primary btn-sm">Liberar Arraste</button>';
-        div.style.backgroundColor = 'white';
-        div.style.padding = '5px';
-        div.style.cursor = 'pointer';
-        return div;
-    };
-
-    dragControl.addTo(map);
-
-    // Função para alternar o arraste do mapa
-    var isDraggingEnabled = false; // Inicialmente, o arraste está desativado
-    document.getElementById('toggle-drag').addEventListener('click', function () {
-        if (isDraggingEnabled) {
-            map.dragging.disable();
-            this.textContent = 'Liberar Arraste';
-            isDraggingEnabled = false;
-        } else {
-            map.dragging.enable();
-            this.textContent = 'Bloquear Arraste';
-            isDraggingEnabled = true;
+        // Função para abrir o aplicativo de mapas
+        function openMapsApp(lat, lon) {
+            var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            var url = isIOS ? `maps://?q=${lat},${lon}` : `https://www.google.com/maps?q=${lat},${lon}`;
+            window.location.href = url;
         }
-    });
-</script>
+
+        // Criar botão de controle personalizado
+        var dragControl = L.control({ position: 'bottomleft' }); // Posição no canto superior direito
+
+        dragControl.onAdd = function () {
+            var div = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
+            div.innerHTML = '<button id="toggle-drag" class="btn btn-primary btn-sm">Liberar Arraste</button>';
+            div.style.backgroundColor = 'white';
+            div.style.padding = '5px';
+            return div;
+        };
+
+        dragControl.addTo(map);
+
+        // Função para alternar o arraste do mapa
+        var isDraggingEnabled = false; // Inicialmente, o arraste está desativado
+        document.getElementById('toggle-drag').addEventListener('click', function () {
+            if (isDraggingEnabled) {
+                map.dragging.disable();
+                this.textContent = 'Liberar Arraste';
+                isDraggingEnabled = false;
+            } else {
+                map.dragging.enable();
+                this.textContent = 'Bloquear Arraste';
+                isDraggingEnabled = true;
+            }
+        });
+    </script>
 </body>
+
 </html>
-
-
-
-
