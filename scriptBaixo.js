@@ -1,62 +1,122 @@
-// Coordenadas da localização
-var latitude = -23.45694904534036;
-var longitude = -45.083017187447076;
+const images = [
+    'imgBaixo/banheiro.jpg',
+    'imgBaixo/banheiro2.jpg',
+    'imgBaixo/banheiro3.jpg',
+    'imgBaixo/banheiro4.jpg',
+    'imgBaixo/banheiro5.jpg',
+    'imgBaixo/cozinha.jpg',
+    'imgBaixo/cozinha2.jpg',
+    'imgBaixo/cozinha3.jpg',
+    'imgBaixo/fundo.jpg',
+    'imgBaixo/fundo2.jpg',
+    'imgBaixo/quarto.jpg',
+    'imgBaixo/quarto2.jpg',
+    'imgBaixo/quarto3.jpg',
+    'imgBaixo/quarto4.jpg',
+    'imgBaixo/sala.jpg',
+    'imgBaixo/suite.jpg',
+    'imgBaixo/suite2.jpg',
+    'imgBaixo/suite3.jpg',
+    'imgBaixo/frenteBaixo.jpg',
+    'imgBaixo/piscinaBaixo.jpg',
+    'imgBaixo/piscinaBaixo2.jpg',
+    'imgBaixo/estacionamentoBaixo.jpg',
+    'imgBaixo/ducha.jpg',
+    'imgBaixo/salaBaixo.jpg'
+];
 
-// Inicializar o mapa com o arraste desativado
-var map = L.map('map', { dragging: false, scrollWheelZoom: false }).setView([latitude, longitude], 15);
+const imageGallery = document.getElementById('imageGallery');
+const modalImage = document.getElementById('modalImage');
+const imageCounter = document.getElementById('imageCounter');
+let currentIndex = 0;
 
-// Adicionar camada do OpenStreetMap
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+// Renderizar a galeria
+function renderGallery() {
+    images.forEach((imagePath, index) => {
+        const col = document.createElement('div');
+        col.className = 'col-lg-3 col-md-4 col-6 mb-2';
+        col.innerHTML = `<img src="${imagePath}" class="img-fluid image-thumbnail" 
+                            data-index="${index}" alt="Imagem">`;
+        imageGallery.appendChild(col);
+    });
 
-// Adicionar marcador ao mapa
-var marker = L.marker([latitude, longitude]).addTo(map);
-
-// Adicionar popup ao marcador
-marker.bindPopup(`
-        <div style="text-align: center;">
-            <b>Ubatuba House</b><br/>
-            Casa da Vera!<br/>
-            Rua Santos, 434, Estufa II<br/>Ubatuba-SP<br/>
-            <button onclick="openMapsApp(${latitude}, ${longitude})" 
-                    class="btn btn-primary btn-sm mt-2">
-                Navegar
-            </button>
-        </div>
-    `).openPopup();
-
-// Função para abrir o aplicativo de mapas
-function openMapsApp(lat, lon) {
-    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    var url = isIOS ? `maps://?q=${lat},${lon}` : `https://www.google.com/maps?q=${lat},${lon}`;
-    window.location.href = url;
+    addImageClickListeners();
 }
 
-// Criar botão de controle personalizado
-var dragControl = L.control({ position: 'bottomleft' }); // Posição no canto superior direito
+// Adicionar evento de clique nas imagens
+function addImageClickListeners() {
+    document.querySelectorAll('.image-thumbnail').forEach((image, index) => {
+        image.addEventListener('click', function () {
+            currentIndex = index;
+            updateModalImage();
+            const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+            imageModal.show();
+        });
+    });
+}
 
-dragControl.onAdd = function () {
-    var div = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
-    div.innerHTML = '<button id="toggle-drag" class="btn btn-primary btn-sm">Liberar Arraste</button>';
-    div.style.backgroundColor = 'white';
-    div.style.padding = '5px';
-    div.style.cursor = 'pointer';
-    return div;
-};
+// Atualizar a imagem no modal
+function updateModalImage() {
+    modalImage.src = images[currentIndex];
+    imageCounter.textContent = `Imagem ${currentIndex + 1} de ${images.length}`;
+}
 
-dragControl.addTo(map);
-
-// Função para alternar o arraste do mapa
-var isDraggingEnabled = false; // Inicialmente, o arraste está desativado
-document.getElementById('toggle-drag').addEventListener('click', function () {
-    if (isDraggingEnabled) {
-        map.dragging.disable();
-        this.textContent = 'Liberar Arraste';
-        isDraggingEnabled = false;
-    } else {
-        map.dragging.enable();
-        this.textContent = 'Bloquear Arraste';
-        isDraggingEnabled = true;
+// Navegação do carrossel
+document.getElementById('prevBtn').addEventListener('click', function () {
+    if (currentIndex > 0) {
+        currentIndex--;
+        updateModalImage();
     }
 });
+
+document.getElementById('nextBtn').addEventListener('click', function () {
+    if (currentIndex < images.length - 1) {
+        currentIndex++;
+        updateModalImage();
+    }
+});
+const imagesPerPage = 8; // Número de imagens por página
+let currentPage = 1; // Página inicial
+
+// Renderizar a galeria com base na página atual
+function renderGallery() {
+    imageGallery.innerHTML = ""; // Limpa a galeria
+
+    // Determina o intervalo de imagens para a página atual
+    const startIndex = (currentPage - 1) * imagesPerPage;
+    const endIndex = Math.min(startIndex + imagesPerPage, images.length);
+
+    for (let i = startIndex; i < endIndex; i++) {
+        const col = document.createElement('div');
+        col.className = 'col-lg-3 col-md-4 col-6 mb-2';
+        col.innerHTML = `<img src="${images[i]}" class="img-fluid image-thumbnail" 
+                            data-index="${i}" alt="Imagem">`;
+        imageGallery.appendChild(col);
+    }
+
+    addImageClickListeners();
+    renderPaginationControls();
+}
+
+// Renderizar os controles de paginação
+function renderPaginationControls() {
+    const totalPages = Math.ceil(images.length / imagesPerPage); // Total de páginas
+    const paginationControls = document.getElementById('paginationControls');
+    paginationControls.innerHTML = ""; // Limpa os controles de paginação
+
+    for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i;
+        pageButton.className = `btn btn-sm mx-1 ${i === currentPage ? "btn-primary" : "btn-outline-primary"}`;
+        pageButton.addEventListener('click', () => {
+            currentPage = i;
+            renderGallery();
+        });
+        paginationControls.appendChild(pageButton);
+    }
+}
+
+
+
+// Inicializar a galeria
+renderGallery();
