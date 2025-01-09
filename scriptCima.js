@@ -62,6 +62,48 @@ document.getElementById('nextBtn').addEventListener('click', function () {
         updateModalImage();
     }
 });
+const imagesPerPage = 8; // Número de imagens por página
+let currentPage = 1; // Página inicial
+
+// Renderizar a galeria com base na página atual
+function renderGallery() {
+    imageGallery.innerHTML = ""; // Limpa a galeria
+
+    // Determina o intervalo de imagens para a página atual
+    const startIndex = (currentPage - 1) * imagesPerPage;
+    const endIndex = Math.min(startIndex + imagesPerPage, images.length);
+
+    for (let i = startIndex; i < endIndex; i++) {
+        const col = document.createElement('div');
+        col.className = 'col-lg-3 col-md-4 col-6 mb-2';
+        col.innerHTML = `<img src="${images[i]}" class="img-fluid image-thumbnail" 
+                            data-index="${i}" alt="Imagem">`;
+        imageGallery.appendChild(col);
+    }
+
+    addImageClickListeners();
+    renderPaginationControls();
+}
+
+// Renderizar os controles de paginação
+function renderPaginationControls() {
+    const totalPages = Math.ceil(images.length / imagesPerPage); // Total de páginas
+    const paginationControls = document.getElementById('paginationControls');
+    paginationControls.innerHTML = ""; // Limpa os controles de paginação
+
+    for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i;
+        pageButton.className = `btn btn-sm mx-1 ${i === currentPage ? "btn-primary" : "btn-outline-primary"}`;
+        pageButton.addEventListener('click', () => {
+            currentPage = i;
+            renderGallery();
+        });
+        paginationControls.appendChild(pageButton);
+    }
+}
+
+
 
 // Inicializar a galeria
 renderGallery();
