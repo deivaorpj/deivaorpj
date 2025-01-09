@@ -12,6 +12,14 @@ body {
     background-color: #EAE7DD !important;
 }
 
+#paginationControls button {
+    min-width: 40px;
+}
+
+#paginationControls .btn-primary {
+    font-weight: bold;
+}
+
 /* Navbar */
 .navbar {
     position: fixed;
