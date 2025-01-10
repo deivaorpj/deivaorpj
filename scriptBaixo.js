@@ -35,8 +35,8 @@ function renderGallery() {
     images.forEach((imagePath, index) => {
         const col = document.createElement('div');
         col.className = 'col-lg-3 col-md-4 col-6 mb-2';
-        col.innerHTML = `<img src="${imagePath}" class="img-fluid image-thumbnail" 
-                            data-index="${index}" alt="Imagem">`;
+col.innerHTML = `<img src="${images[i]}" class="img-fluid image-thumbnail" 
+                    data-index="${i}"      alt="Imagem">`;
         imageGallery.appendChild(col);
     });
 
