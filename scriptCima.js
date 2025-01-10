@@ -32,9 +32,9 @@ function renderGallery() {
 
 // Adicionar evento de clique nas imagens
 function addImageClickListeners() {
-    document.querySelectorAll('.image-thumbnail').forEach((image, index) => {
+    document.querySelectorAll('.image-thumbnail').forEach((image) => {
         image.addEventListener('click', function () {
-            currentIndex = index;
+            currentIndex = parseInt(image.getAttribute('data-index')); // Obter índice correto
             updateModalImage();
             const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
             imageModal.show();
